@@ -18,6 +18,10 @@ namespace WindowsFormsApp1
             this.SetStyle(ControlStyles.UserPaint, true);
             this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+
+            this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
+            this.BackColor = Color.FromArgb(0, 0, 0, 0);
+
             this.DoubleBuffered = true;
         }
         private bool 横向a = true;
@@ -170,16 +174,16 @@ namespace WindowsFormsApp1
 
             if (箭头设置a == 箭头方向.正向)
             {
-                pen1.CustomEndCap = new System.Drawing.Drawing2D.AdjustableArrowCap(3, 5, true);
+                pen1.CustomEndCap = new System.Drawing.Drawing2D.AdjustableArrowCap(5, 8, true);
             }
             else if (箭头设置a == 箭头方向.反向)
             {
-                pen1.CustomStartCap = new System.Drawing.Drawing2D.AdjustableArrowCap(3, 5, true);
+                pen1.CustomStartCap = new System.Drawing.Drawing2D.AdjustableArrowCap(5, 8, true);
             }
             else if (箭头设置a == 箭头方向.双向)
             {
-                pen1.CustomEndCap = new System.Drawing.Drawing2D.AdjustableArrowCap(3, 5, true);
-                pen1.CustomStartCap = new System.Drawing.Drawing2D.AdjustableArrowCap(3, 5, true);
+                pen1.CustomEndCap = new System.Drawing.Drawing2D.AdjustableArrowCap(5, 8, true);
+                pen1.CustomStartCap = new System.Drawing.Drawing2D.AdjustableArrowCap(5, 8, true);
             }
             else if (箭头设置a == 箭头方向.无)
             {
