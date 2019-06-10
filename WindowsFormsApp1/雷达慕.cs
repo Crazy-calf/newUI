@@ -1,116 +1,112 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using 轨道计算;
+using System.Collections;
 
 namespace WindowsFormsApp1
 {
-    public partial class Form1 : Form
+    public partial class 雷达慕 : UserControl
     {
-        #region 声明
-        AutoSizeFormClass asc = new AutoSizeFormClass();//分辨率适配
+        #region 参数
+        public string name = "HAIYANG 2A";
+        public string line1 = "1 37781U 11043A   19084.96741172 -.00000044  00000-0  11863-6 0  9998";
+        public string line2 = "2 37781  99.3212  95.3692 0001741  85.5656 274.5707 13.78718376383104";
+        public double width = 0.0;
 
-        public bool isOpenWindow_天线 = false;
-        public bool isOpenWindow_X光发射1 = false;
+        public Satellite satellite;
+
+        #region 地面站
+        /// <summary>
+        /// 地面站经度
+        /// </summary>
+        public double x = 116.363;
+
+        /// <summary>
+        /// 地面站维度
+        /// </summary>
+        public double y = 40.059;
+
+        /// <summary>
+        /// 地面站高度
+        /// </summary>
+        public double z = 0.4;
         #endregion
 
-
-        #region 临时数据
-        static string name = "HAIYANG 2A";
-        static string line1 = "1 37781U 11043A   19084.96741172 -.00000044  00000-0  11863-6 0  9998";
-        static string line2 = "2 37781  99.3212  95.3692 0001741  85.5656 274.5707 13.78718376383104";
-        static double width = 0.0;
-        Satellite satellite = new Satellite(name, line1, line2, width);
-
-        static double x = 116.363;
-        static double y = 40.059;
-        static double z = 0.4;
-
+        #region 起止时间及时区
         DateTime 开始时间 = Convert.ToDateTime("2019/5/19 17:28:33");
         DateTime 结束时间 = Convert.ToDateTime("2019/5/19 17:42:06");
+        public int 时区 = 8;
+        #endregion
 
-        int 时区 = 8;
+        #region 画线属性
+        public Color 线颜色 = Color.Red;
+        public float 线宽 = 2;
+        #endregion
 
-        //雷达半轴坐标上限为90
+        #region 设置雷达显示范围
+        /// <summary>
+        /// 雷达x轴最大值,默认90
+        /// </summary>
         float x_max = 90;
+
+        /// <summary>
+        /// 雷达y轴最大值,默认90
+        /// </summary>
         float y_max = 90;
         #endregion
 
-
-        #region 委托
-        public delegate void ChangeStatus(Boolean isOpne);
-
-        public static void win_Close(ref bool a)
-        {
-            a = false;
-        }
         #endregion
 
-        public Form1()
+
+        public 雷达慕()
         {
             InitializeComponent();
+             string home = Application.StartupPath;
+            this.BackgroundImage= Image.FromFile( @"D:\project\winform\newUI\WindowsFormsApp1\WindowsFormsApp1\leida.jpg");
+            this.BackgroundImageLayout = ImageLayout.Stretch;
+
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void 雷达慕_Paint(object sender, PaintEventArgs e)
         {
-            asc.controllInitializeSize(this);
         }
 
-        private void Form1_SizeChanged(object sender, EventArgs e)
+        private void 雷达慕_Load(object sender, EventArgs e)
         {
-            asc.controlAutoSize(this);
         }
 
-        private void Button1_Click(object sender, EventArgs e)
+        private void 雷达慕_Click(object sender, EventArgs e)
         {
-            if (!isOpenWindow_天线)
+
+            Graphics g = this.CreateGraphics();
+
+            float dpiX = this.Size.Width / 2;
+            float dpiY = this.Size.Height / 2;
+            if(satellite == null)
             {
-                天线 tx = new 天线();
-                tx.StartPosition = FormStartPosition.CenterParent;
-                tx.Show();
-                isOpenWindow_天线 = true;
-                tx.MyEvent += new 天线.MyDelegate(() => isOpenWindow_天线 = false);
+                satellite = new Satellite(name, line1, line2, width);
             }
-        }
-
-        private void Button2_Click(object sender, EventArgs e)
-        {
-            if (!isOpenWindow_X光发射1)
-            {
-                X光发射1 obj = new X光发射1();
-                obj.StartPosition = FormStartPosition.CenterParent;
-                obj.Show();
-                isOpenWindow_X光发射1 = true;
-                obj.MyEvent += new X光发射1.MyDelegate(() => isOpenWindow_X光发射1 = false);
-            }
-        }
-
-        private void Button14_Click(object sender, EventArgs e)
-        {
-            Graphics g = 雷达慕1.CreateGraphics();
-            float dpiX = 雷达慕1.Size.Width/2;
-            float dpiY = 雷达慕1.Size.Height / 2;
 
             位置计算 位置计算1 = new 位置计算(satellite.名字, satellite.line1, satellite.line2);
             卫星位置[] 卫星位置 = 位置计算1.计算预计轨迹(x, y, z, 开始时间.AddHours(-时区), 结束时间.AddHours(-时区), 1);
 
             PointF[] points = new PointF[卫星位置.Length];
 
-            
+
             for (int i = 0; i < 卫星位置.Length; i++)
             {
-                points[i].X = calculateAZ_EL_XY(true, 卫星位置[i].AZ, 卫星位置[i].El) * dpiX / x_max + dpiX ;
-                points[i].Y = - (calculateAZ_EL_XY(false, 卫星位置[i].AZ, 卫星位置[i].El) * dpiY / y_max) + dpiY ;
+                points[i].X = calculateAZ_EL_XY(true, 卫星位置[i].AZ, 卫星位置[i].El) * dpiX / x_max + dpiX;
+                points[i].Y = -(calculateAZ_EL_XY(false, 卫星位置[i].AZ, 卫星位置[i].El) * dpiY / y_max) + dpiY;
             }
 
-            Pen pen = new Pen(雷达慕1.线颜色, 雷达慕1.线宽);
+            Pen pen = new Pen(this.线颜色, this.线宽);
 
             ArrayList ay = 分段(points);
             if (ay.Count == 0)//不需要分段
@@ -139,7 +135,6 @@ namespace WindowsFormsApp1
                 }
 
             }
-
         }
 
 

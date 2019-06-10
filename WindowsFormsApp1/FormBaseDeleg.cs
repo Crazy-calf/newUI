@@ -11,6 +11,6 @@ namespace WindowsFormsApp1
         //定义委托
         public delegate void MyDelegate();
         //定义事件
-        public event MyDelegate MyEvent;
+        //public event MyDelegate MyEvent;
     }
 }

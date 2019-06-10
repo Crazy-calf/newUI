@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>轨道计算.1.0.0.0.Fakes</name>
+    </assembly>
+    <members>
+        <member name="T:轨道计算.Fakes.Shim卫星位置">
+            <summary>轨道计算.卫星位置 的填充码类型</summary>
+        </member>
+        <member name="M:轨道计算.Fakes.Shim卫星位置.#ctor">
+            <summary>初始化新的填充码实例</summary>
+        </member>
+        <member name="M:轨道计算.Fakes.Shim卫星位置.#ctor(轨道计算.卫星位置)">
+            <summary>初始化给定实例的新填充码</summary>
+        </member>
+        <member name="T:轨道计算.Fakes.Shim卫星位置.AllInstances">
+            <summary>为所有实例成员定义填充码</summary>
+        </member>
+        <member name="M:轨道计算.Fakes.Shim卫星位置.BehaveAsCurrent">
+            <summary>为已填充的类型的所有方法分配“Current”行为</summary>
+        </member>
+        <member name="M:轨道计算.Fakes.Shim卫星位置.BehaveAsNotImplemented">
+            <summary>为已填充的类型的所有方法分配“NotImplemented”行为</summary>
+        </member>
+        <member name="P:轨道计算.Fakes.Shim卫星位置.Behavior">
+            <summary>为已填充的类型的所有方法分配行为</summary>
+        </member>
+        <member name="P:轨道计算.Fakes.Shim卫星位置.Constructor">
+            <summary>设置 卫星位置.卫星位置() 的 填充码</summary>
+        </member>
+        <member name="T:轨道计算.Fakes.Shim过境预报">
+            <summary>轨道计算.过境预报 的填充码类型</summary>
+        </member>
+        <member name="M:轨道计算.Fakes.Shim过境预报.#ctor">
+            <summary>初始化新的填充码实例</summary>
+        </member>
+        <member name="M:轨道计算.Fakes.Shim过境预报.#ctor(轨道计算.过境预报)">
+            <summary>初始化给定实例的新填充码</summary>
+        </member>
+        <member name="T:轨道计算.Fakes.Shim过境预报.AllInstances">
+            <summary>为所有实例成员定义填充码</summary>
+        </member>
+        <member name="M:轨道计算.Fakes.Shim过境预报.BehaveAsCurrent">
+            <summary>为已填充的类型的所有方法分配“Current”行为</summary>
+        </member>
+        <member name="M:轨道计算.Fakes.Shim过境预报.BehaveAsNotImplemented">
+            <summary>为已填充的类型的所有方法分配“NotImplemented”行为</summary>
+        </member>
+        <member name="P:轨道计算.Fakes.Shim过境预报.Behavior">
+            <summary>为已填充的类型的所有方法分配行为</summary>
+        </member>
+        <member name="P:轨道计算.Fakes.Shim过境预报.Constructor">
+            <summary>设置 过境预报.过境预报() 的 填充码</summary>
+        </member>
+        <member name="T:轨道计算.Fakes.Stub卫星位置">
+            <summary>轨道计算.卫星位置 的存根类型</summary>
+        </member>
+        <member name="M:轨道计算.Fakes.Stub卫星位置.#ctor">
+            <summary>初始化新实例</summary>
+        </member>
+        <member name="P:轨道计算.Fakes.Stub卫星位置.CallBase">
+            <summary>获取或设置一个值，该值指示是否应调用基方法而不调用回退行为</summary>
+        </member>
+        <member name="M:轨道计算.Fakes.Stub卫星位置.InitializeStub">
+            <summary>初始化 type Stub卫星位置 的新实例</summary>
+        </member>
+        <member name="P:轨道计算.Fakes.Stub卫星位置.InstanceBehavior">
+            <summary>获取或设置实例行为。</summary>
+        </member>
+        <member name="P:轨道计算.Fakes.Stub卫星位置.InstanceObserver">
+            <summary>获取或设置实例观察者。</summary>
+        </member>
+        <member name="T:轨道计算.Fakes.Stub过境预报">
+            <summary>轨道计算.过境预报 的存根类型</summary>
+        </member>
+        <member name="M:轨道计算.Fakes.Stub过境预报.#ctor">
+            <summary>初始化新实例</summary>
+        </member>
+        <member name="P:轨道计算.Fakes.Stub过境预报.CallBase">
+            <summary>获取或设置一个值，该值指示是否应调用基方法而不调用回退行为</summary>
+        </member>
+        <member name="M:轨道计算.Fakes.Stub过境预报.InitializeStub">
+            <summary>初始化 type Stub过境预报 的新实例</summary>
+        </member>
+        <member name="P:轨道计算.Fakes.Stub过境预报.InstanceBehavior">
+            <summary>获取或设置实例行为。</summary>
+        </member>
+        <member name="P:轨道计算.Fakes.Stub过境预报.InstanceObserver">
+            <summary>获取或设置实例观察者。</summary>
+        </member>
+    </members>
+</doc>

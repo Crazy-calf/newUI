@@ -10,4 +10,10 @@ D:\project\winform\newUI\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsForm
 D:\project\winform\newUI\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
 D:\project\winform\newUI\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
 D:\project\winform\newUI\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.箭头.resources
-D:\project\winform\newUI\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csprojAssemblyReference.cache
+D:\project\winform\newUI\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.雷达慕.resources
+D:\project\winform\newUI\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\轨道计算.dll
+D:\project\winform\newUI\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CopyComplete
+D:\project\winform\newUI\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\轨道计算.1.0.0.0.Fakes.fakesconfig
+D:\project\winform\newUI\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\Microsoft.QualityTools.Testing.Fakes.dll
+D:\project\winform\newUI\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\zh-Hans\Microsoft.QualityTools.Testing.Fakes.resources.dll
+D:\project\winform\newUI\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\OrbitTools.dll

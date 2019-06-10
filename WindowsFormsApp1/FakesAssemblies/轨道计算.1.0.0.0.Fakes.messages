@@ -1,0 +1,2 @@
+D:\project\winform\newUI\WindowsFormsApp1\WindowsFormsApp1\Fakes\轨道计算.fakes : warning : 无法为 轨道计算.位置计算 生成存根: 未能解析程序集“OrbitTools, Version=1.0.0.1, Culture=neutral, PublicKeyToken=null”。是否缺少程序集引用?。
+D:\project\winform\newUI\WindowsFormsApp1\WindowsFormsApp1\Fakes\轨道计算.fakes : warning : 无法为 轨道计算.位置计算 生成填充码: 未能解析程序集“OrbitTools, Version=1.0.0.1, Culture=neutral, PublicKeyToken=null”。是否缺少程序集引用?。

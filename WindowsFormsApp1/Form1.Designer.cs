@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -47,26 +48,28 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.箭头12 = new WindowsFormsApp1.箭头();
+            this.箭头11 = new WindowsFormsApp1.箭头();
             this.button9 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.箭头14 = new WindowsFormsApp1.箭头();
+            this.箭头13 = new WindowsFormsApp1.箭头();
             this.button13 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.箭头6 = new WindowsFormsApp1.箭头();
-            this.箭头7 = new WindowsFormsApp1.箭头();
-            this.箭头8 = new WindowsFormsApp1.箭头();
-            this.箭头9 = new WindowsFormsApp1.箭头();
-            this.箭头10 = new WindowsFormsApp1.箭头();
-            this.箭头11 = new WindowsFormsApp1.箭头();
-            this.箭头12 = new WindowsFormsApp1.箭头();
-            this.label7 = new System.Windows.Forms.Label();
-            this.箭头13 = new WindowsFormsApp1.箭头();
-            this.箭头14 = new WindowsFormsApp1.箭头();
             this.label8 = new System.Windows.Forms.Label();
+            this.箭头10 = new WindowsFormsApp1.箭头();
+            this.箭头9 = new WindowsFormsApp1.箭头();
+            this.箭头8 = new WindowsFormsApp1.箭头();
+            this.箭头7 = new WindowsFormsApp1.箭头();
+            this.箭头6 = new WindowsFormsApp1.箭头();
+            this.button14 = new System.Windows.Forms.Button();
+            this.雷达慕1 = new WindowsFormsApp1.雷达慕();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -351,6 +354,50 @@
             this.panel2.Size = new System.Drawing.Size(382, 600);
             this.panel2.TabIndex = 1;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(244)))), ((int)(((byte)(199)))));
+            this.label7.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.label7.Location = new System.Drawing.Point(149, 21);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(74, 21);
+            this.label7.TabIndex = 17;
+            this.label7.Text = "天线基塔";
+            // 
+            // 箭头12
+            // 
+            this.箭头12.BackColor = System.Drawing.Color.Transparent;
+            this.箭头12.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.箭头12.Location = new System.Drawing.Point(135, 400);
+            this.箭头12.Name = "箭头12";
+            this.箭头12.Size = new System.Drawing.Size(104, 10);
+            this.箭头12.TabIndex = 9;
+            this.箭头12.字体 = new System.Drawing.Font("宋体", 9F);
+            this.箭头12.文字 = "";
+            this.箭头12.横向 = true;
+            this.箭头12.箭头设置 = WindowsFormsApp1.箭头.箭头方向.正向;
+            this.箭头12.线宽 = 2F;
+            this.箭头12.线颜色 = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.箭头12.闪烁 = false;
+            // 
+            // 箭头11
+            // 
+            this.箭头11.BackColor = System.Drawing.Color.Transparent;
+            this.箭头11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.箭头11.Location = new System.Drawing.Point(136, 325);
+            this.箭头11.Name = "箭头11";
+            this.箭头11.Size = new System.Drawing.Size(103, 10);
+            this.箭头11.TabIndex = 8;
+            this.箭头11.字体 = new System.Drawing.Font("宋体", 9F);
+            this.箭头11.文字 = "";
+            this.箭头11.横向 = true;
+            this.箭头11.箭头设置 = WindowsFormsApp1.箭头.箭头方向.正向;
+            this.箭头11.线宽 = 2F;
+            this.箭头11.线颜色 = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.箭头11.闪烁 = false;
+            // 
             // button9
             // 
             this.button9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
@@ -406,6 +453,38 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(342, 600);
             this.panel3.TabIndex = 2;
+            // 
+            // 箭头14
+            // 
+            this.箭头14.BackColor = System.Drawing.Color.Transparent;
+            this.箭头14.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.箭头14.Location = new System.Drawing.Point(124, 164);
+            this.箭头14.Name = "箭头14";
+            this.箭头14.Size = new System.Drawing.Size(84, 10);
+            this.箭头14.TabIndex = 19;
+            this.箭头14.字体 = new System.Drawing.Font("宋体", 9F);
+            this.箭头14.文字 = "";
+            this.箭头14.横向 = true;
+            this.箭头14.箭头设置 = WindowsFormsApp1.箭头.箭头方向.正向;
+            this.箭头14.线宽 = 2F;
+            this.箭头14.线颜色 = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.箭头14.闪烁 = false;
+            // 
+            // 箭头13
+            // 
+            this.箭头13.BackColor = System.Drawing.Color.Transparent;
+            this.箭头13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.箭头13.Location = new System.Drawing.Point(124, 109);
+            this.箭头13.Name = "箭头13";
+            this.箭头13.Size = new System.Drawing.Size(84, 10);
+            this.箭头13.TabIndex = 18;
+            this.箭头13.字体 = new System.Drawing.Font("宋体", 9F);
+            this.箭头13.文字 = "";
+            this.箭头13.横向 = true;
+            this.箭头13.箭头设置 = WindowsFormsApp1.箭头.箭头方向.正向;
+            this.箭头13.线宽 = 2F;
+            this.箭头13.线颜色 = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.箭头13.闪烁 = false;
             // 
             // button13
             // 
@@ -476,72 +555,20 @@
             this.panel4.Controls.Add(this.panel1);
             this.panel4.Location = new System.Drawing.Point(12, 12);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1325, 667);
+            this.panel4.Size = new System.Drawing.Size(70, 48);
             this.panel4.TabIndex = 3;
             // 
-            // 箭头6
+            // label8
             // 
-            this.箭头6.BackColor = System.Drawing.Color.Transparent;
-            this.箭头6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.箭头6.Location = new System.Drawing.Point(423, 156);
-            this.箭头6.Name = "箭头6";
-            this.箭头6.Size = new System.Drawing.Size(561, 10);
-            this.箭头6.TabIndex = 3;
-            this.箭头6.字体 = new System.Drawing.Font("宋体", 9F);
-            this.箭头6.文字 = "";
-            this.箭头6.横向 = true;
-            this.箭头6.箭头设置 = WindowsFormsApp1.箭头.箭头方向.正向;
-            this.箭头6.线宽 = 2F;
-            this.箭头6.线颜色 = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            this.箭头6.闪烁 = false;
-            // 
-            // 箭头7
-            // 
-            this.箭头7.BackColor = System.Drawing.Color.Transparent;
-            this.箭头7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.箭头7.Location = new System.Drawing.Point(420, 211);
-            this.箭头7.Name = "箭头7";
-            this.箭头7.Size = new System.Drawing.Size(561, 10);
-            this.箭头7.TabIndex = 4;
-            this.箭头7.字体 = new System.Drawing.Font("宋体", 9F);
-            this.箭头7.文字 = "";
-            this.箭头7.横向 = true;
-            this.箭头7.箭头设置 = WindowsFormsApp1.箭头.箭头方向.正向;
-            this.箭头7.线宽 = 2F;
-            this.箭头7.线颜色 = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            this.箭头7.闪烁 = false;
-            // 
-            // 箭头8
-            // 
-            this.箭头8.BackColor = System.Drawing.Color.Transparent;
-            this.箭头8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.箭头8.Location = new System.Drawing.Point(420, 297);
-            this.箭头8.Name = "箭头8";
-            this.箭头8.Size = new System.Drawing.Size(561, 10);
-            this.箭头8.TabIndex = 5;
-            this.箭头8.字体 = new System.Drawing.Font("宋体", 9F);
-            this.箭头8.文字 = "";
-            this.箭头8.横向 = true;
-            this.箭头8.箭头设置 = WindowsFormsApp1.箭头.箭头方向.正向;
-            this.箭头8.线宽 = 2F;
-            this.箭头8.线颜色 = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            this.箭头8.闪烁 = false;
-            // 
-            // 箭头9
-            // 
-            this.箭头9.BackColor = System.Drawing.Color.Transparent;
-            this.箭头9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.箭头9.Location = new System.Drawing.Point(420, 372);
-            this.箭头9.Name = "箭头9";
-            this.箭头9.Size = new System.Drawing.Size(143, 10);
-            this.箭头9.TabIndex = 6;
-            this.箭头9.字体 = new System.Drawing.Font("宋体", 9F);
-            this.箭头9.文字 = "";
-            this.箭头9.横向 = true;
-            this.箭头9.箭头设置 = WindowsFormsApp1.箭头.箭头方向.正向;
-            this.箭头9.线宽 = 2F;
-            this.箭头9.线颜色 = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            this.箭头9.闪烁 = false;
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.White;
+            this.label8.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.label8.Location = new System.Drawing.Point(658, 292);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(52, 21);
+            this.label8.TabIndex = 17;
+            this.label8.Text = "X跟踪";
             // 
             // 箭头10
             // 
@@ -559,99 +586,96 @@
             this.箭头10.线颜色 = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
             this.箭头10.闪烁 = false;
             // 
-            // 箭头11
+            // 箭头9
             // 
-            this.箭头11.BackColor = System.Drawing.Color.Transparent;
-            this.箭头11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.箭头11.Location = new System.Drawing.Point(136, 325);
-            this.箭头11.Name = "箭头11";
-            this.箭头11.Size = new System.Drawing.Size(103, 10);
-            this.箭头11.TabIndex = 8;
-            this.箭头11.字体 = new System.Drawing.Font("宋体", 9F);
-            this.箭头11.文字 = "";
-            this.箭头11.横向 = true;
-            this.箭头11.箭头设置 = WindowsFormsApp1.箭头.箭头方向.正向;
-            this.箭头11.线宽 = 2F;
-            this.箭头11.线颜色 = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            this.箭头11.闪烁 = false;
+            this.箭头9.BackColor = System.Drawing.Color.Transparent;
+            this.箭头9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.箭头9.Location = new System.Drawing.Point(420, 372);
+            this.箭头9.Name = "箭头9";
+            this.箭头9.Size = new System.Drawing.Size(143, 10);
+            this.箭头9.TabIndex = 6;
+            this.箭头9.字体 = new System.Drawing.Font("宋体", 9F);
+            this.箭头9.文字 = "";
+            this.箭头9.横向 = true;
+            this.箭头9.箭头设置 = WindowsFormsApp1.箭头.箭头方向.正向;
+            this.箭头9.线宽 = 2F;
+            this.箭头9.线颜色 = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.箭头9.闪烁 = false;
             // 
-            // 箭头12
+            // 箭头8
             // 
-            this.箭头12.BackColor = System.Drawing.Color.Transparent;
-            this.箭头12.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.箭头12.Location = new System.Drawing.Point(135, 400);
-            this.箭头12.Name = "箭头12";
-            this.箭头12.Size = new System.Drawing.Size(104, 10);
-            this.箭头12.TabIndex = 9;
-            this.箭头12.字体 = new System.Drawing.Font("宋体", 9F);
-            this.箭头12.文字 = "";
-            this.箭头12.横向 = true;
-            this.箭头12.箭头设置 = WindowsFormsApp1.箭头.箭头方向.正向;
-            this.箭头12.线宽 = 2F;
-            this.箭头12.线颜色 = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            this.箭头12.闪烁 = false;
+            this.箭头8.BackColor = System.Drawing.Color.Transparent;
+            this.箭头8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.箭头8.Location = new System.Drawing.Point(420, 297);
+            this.箭头8.Name = "箭头8";
+            this.箭头8.Size = new System.Drawing.Size(561, 10);
+            this.箭头8.TabIndex = 5;
+            this.箭头8.字体 = new System.Drawing.Font("宋体", 9F);
+            this.箭头8.文字 = "";
+            this.箭头8.横向 = true;
+            this.箭头8.箭头设置 = WindowsFormsApp1.箭头.箭头方向.正向;
+            this.箭头8.线宽 = 2F;
+            this.箭头8.线颜色 = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.箭头8.闪烁 = false;
             // 
-            // label7
+            // 箭头7
             // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(244)))), ((int)(((byte)(199)))));
-            this.label7.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            this.label7.Location = new System.Drawing.Point(149, 21);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(74, 21);
-            this.label7.TabIndex = 17;
-            this.label7.Text = "天线基塔";
+            this.箭头7.BackColor = System.Drawing.Color.Transparent;
+            this.箭头7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.箭头7.Location = new System.Drawing.Point(420, 211);
+            this.箭头7.Name = "箭头7";
+            this.箭头7.Size = new System.Drawing.Size(561, 10);
+            this.箭头7.TabIndex = 4;
+            this.箭头7.字体 = new System.Drawing.Font("宋体", 9F);
+            this.箭头7.文字 = "";
+            this.箭头7.横向 = true;
+            this.箭头7.箭头设置 = WindowsFormsApp1.箭头.箭头方向.正向;
+            this.箭头7.线宽 = 2F;
+            this.箭头7.线颜色 = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.箭头7.闪烁 = false;
             // 
-            // 箭头13
+            // 箭头6
             // 
-            this.箭头13.BackColor = System.Drawing.Color.Transparent;
-            this.箭头13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.箭头13.Location = new System.Drawing.Point(124, 109);
-            this.箭头13.Name = "箭头13";
-            this.箭头13.Size = new System.Drawing.Size(84, 10);
-            this.箭头13.TabIndex = 18;
-            this.箭头13.字体 = new System.Drawing.Font("宋体", 9F);
-            this.箭头13.文字 = "";
-            this.箭头13.横向 = true;
-            this.箭头13.箭头设置 = WindowsFormsApp1.箭头.箭头方向.正向;
-            this.箭头13.线宽 = 2F;
-            this.箭头13.线颜色 = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            this.箭头13.闪烁 = false;
+            this.箭头6.BackColor = System.Drawing.Color.Transparent;
+            this.箭头6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.箭头6.Location = new System.Drawing.Point(423, 156);
+            this.箭头6.Name = "箭头6";
+            this.箭头6.Size = new System.Drawing.Size(561, 10);
+            this.箭头6.TabIndex = 3;
+            this.箭头6.字体 = new System.Drawing.Font("宋体", 9F);
+            this.箭头6.文字 = "";
+            this.箭头6.横向 = true;
+            this.箭头6.箭头设置 = WindowsFormsApp1.箭头.箭头方向.正向;
+            this.箭头6.线宽 = 2F;
+            this.箭头6.线颜色 = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.箭头6.闪烁 = false;
             // 
-            // 箭头14
+            // button14
             // 
-            this.箭头14.BackColor = System.Drawing.Color.Transparent;
-            this.箭头14.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.箭头14.Location = new System.Drawing.Point(124, 164);
-            this.箭头14.Name = "箭头14";
-            this.箭头14.Size = new System.Drawing.Size(84, 10);
-            this.箭头14.TabIndex = 19;
-            this.箭头14.字体 = new System.Drawing.Font("宋体", 9F);
-            this.箭头14.文字 = "";
-            this.箭头14.横向 = true;
-            this.箭头14.箭头设置 = WindowsFormsApp1.箭头.箭头方向.正向;
-            this.箭头14.线宽 = 2F;
-            this.箭头14.线颜色 = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            this.箭头14.闪烁 = false;
+            this.button14.Location = new System.Drawing.Point(136, 515);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(75, 23);
+            this.button14.TabIndex = 18;
+            this.button14.Text = "画线";
+            this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.Button14_Click);
             // 
-            // label8
+            // 雷达慕1
             // 
-            this.label8.AutoSize = true;
-            this.label8.BackColor = System.Drawing.Color.White;
-            this.label8.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            this.label8.Location = new System.Drawing.Point(658, 292);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(52, 21);
-            this.label8.TabIndex = 17;
-            this.label8.Text = "X跟踪";
+            this.雷达慕1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("雷达慕1.BackgroundImage")));
+            this.雷达慕1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.雷达慕1.Location = new System.Drawing.Point(57, 145);
+            this.雷达慕1.Name = "雷达慕1";
+            this.雷达慕1.Size = new System.Drawing.Size(266, 271);
+            this.雷达慕1.TabIndex = 19;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1349, 691);
+            this.Controls.Add(this.雷达慕1);
+            this.Controls.Add(this.button14);
             this.Controls.Add(this.panel4);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -709,6 +733,8 @@
         private 箭头 箭头14;
         private 箭头 箭头13;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button button14;
+        private 雷达慕 雷达慕1;
     }
 }
 
