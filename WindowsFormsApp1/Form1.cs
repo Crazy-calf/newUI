@@ -23,24 +23,24 @@ namespace WindowsFormsApp1
 
 
         #region 临时数据
-        static string name = "HAIYANG 2A";
-        static string line1 = "1 37781U 11043A   19084.96741172 -.00000044  00000-0  11863-6 0  9998";
-        static string line2 = "2 37781  99.3212  95.3692 0001741  85.5656 274.5707 13.78718376383104";
-        static double width = 0.0;
-        Satellite satellite = new Satellite(name, line1, line2, width);
+        //static string name = "HAIYANG 2A";
+        //static string line1 = "1 37781U 11043A   19084.96741172 -.00000044  00000-0  11863-6 0  9998";
+        //static string line2 = "2 37781  99.3212  95.3692 0001741  85.5656 274.5707 13.78718376383104";
+        //static double width = 0.0;
+        //Satellite satellite = new Satellite(name, line1, line2, width);
 
-        static double x = 116.363;
-        static double y = 40.059;
-        static double z = 0.4;
+        //static double x = 116.363;
+        //static double y = 40.059;
+        //static double z = 0.4;
 
-        DateTime 开始时间 = Convert.ToDateTime("2019/5/19 17:28:33");
-        DateTime 结束时间 = Convert.ToDateTime("2019/5/19 17:42:06");
+        //DateTime 开始时间 = Convert.ToDateTime("2019/5/19 17:28:33");
+        //DateTime 结束时间 = Convert.ToDateTime("2019/5/19 17:42:06");
 
-        int 时区 = 8;
+        //int 时区 = 8;
 
-        //雷达半轴坐标上限为90
-        float x_max = 90;
-        float y_max = 90;
+        ////雷达半轴坐标上限为90
+        //float x_max = 90;
+        //float y_max = 90;
         #endregion
 
 
@@ -66,6 +66,10 @@ namespace WindowsFormsApp1
         private void Form1_SizeChanged(object sender, EventArgs e)
         {
             asc.controlAutoSize(this);
+            if (雷达慕1.points != null)
+            {
+                //雷达慕1.Draw(雷达慕1.points);
+            }
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -94,51 +98,89 @@ namespace WindowsFormsApp1
 
         private void Button14_Click(object sender, EventArgs e)
         {
-            Graphics g = 雷达慕1.CreateGraphics();
-            float dpiX = 雷达慕1.Size.Width/2;
-            float dpiY = 雷达慕1.Size.Height / 2;
 
-            位置计算 位置计算1 = new 位置计算(satellite.名字, satellite.line1, satellite.line2);
-            卫星位置[] 卫星位置 = 位置计算1.计算预计轨迹(x, y, z, 开始时间.AddHours(-时区), 结束时间.AddHours(-时区), 1);
+            string name = "HAIYANG 2A";
+            string line1 = "1 37781U 11043A   19084.96741172 -.00000044  00000-0  11863-6 0  9998";
+            string line2 = "2 37781  99.3212  95.3692 0001741  85.5656 274.5707 13.78718376383104";
+            double width = 0.0;
 
-            PointF[] points = new PointF[卫星位置.Length];
+            Satellite satellite = new Satellite(name, line1, line2, width);
+
+            //可以直接给satellite赋值
+
+            雷达慕1.satellite = satellite;
+
+            雷达慕1.x = 116.363;
+            雷达慕1.y = 40.059;
+            雷达慕1.z = 0.4;
+
+            雷达慕1.开始时间 = Convert.ToDateTime("2019/5/19 17:28:33");
+            雷达慕1.结束时间 = Convert.ToDateTime("2019/5/19 17:42:06");
+
+            雷达慕1.时区 = 8;
+
+            //雷达半轴坐标上限为90
+            雷达慕1.x_max = 90;
+            雷达慕1.y_max = 90;
+            雷达慕1.线颜色 = Color.Red;
+            雷达慕1.线宽 = 2;
+
+
+            雷达慕1.Draw();
 
             
-            for (int i = 0; i < 卫星位置.Length; i++)
-            {
-                points[i].X = calculateAZ_EL_XY(true, 卫星位置[i].AZ, 卫星位置[i].El) * dpiX / x_max + dpiX ;
-                points[i].Y = - (calculateAZ_EL_XY(false, 卫星位置[i].AZ, 卫星位置[i].El) * dpiY / y_max) + dpiY ;
-            }
 
-            Pen pen = new Pen(雷达慕1.线颜色, 雷达慕1.线宽);
+            #region 外部测试
+            //Bitmap destBitmap = new Bitmap(Convert.ToInt32(pictureBox1.Size.Width), Convert.ToInt32(pictureBox1.Size.Height));
 
-            ArrayList ay = 分段(points);
-            if (ay.Count == 0)//不需要分段
-            {
-                g.DrawCurve(pen, points);
-            }
-            else
-            {
-                int 上次结尾 = 0;
-                for (int i = 0; i < ay.Count; i++)
-                {
-                    int 点数 = (int)ay[i] - 上次结尾;
-                    PointF[] points_1 = new PointF[点数];
-                    for (int j = 0; j < 点数; j++)
-                    {
-                        points_1[j] = points[上次结尾 + j];
-                    }
-                    上次结尾 = 上次结尾 + 点数;
-                    try
-                    {
-                        g.DrawCurve(pen, points_1);
-                    }
-                    catch
-                    {
-                    }
-                }
+            //Graphics g = Graphics.FromImage(destBitmap);
 
-            }
+            //float dpiX = pictureBox1.Size.Width / 2;
+            //float dpiY = pictureBox1.Size.Height / 2;
+
+            //位置计算 位置计算1 = new 位置计算(satellite.名字, satellite.line1, satellite.line2);
+            //卫星位置[] 卫星位置 = 位置计算1.计算预计轨迹(x, y, z, 开始时间.AddHours(-时区), 结束时间.AddHours(-时区), 1);
+
+            //PointF[] points = new PointF[卫星位置.Length];
+
+
+            //for (int i = 0; i < 卫星位置.Length; i++)
+            //{
+            //    points[i].X = calculateAZ_EL_XY(true, 卫星位置[i].AZ, 卫星位置[i].El) * dpiX / x_max + dpiX;
+            //    points[i].Y = -(calculateAZ_EL_XY(false, 卫星位置[i].AZ, 卫星位置[i].El) * dpiY / y_max) + dpiY;
+            //}
+
+            //Pen pen = new Pen(雷达慕1.线颜色, 雷达慕1.线宽);
+
+            //ArrayList ay = 分段(points);
+            //if (ay.Count == 0)//不需要分段
+            //{
+            //    g.DrawCurve(pen, points);
+            //}
+            //else
+            //{
+            //    int 上次结尾 = 0;
+            //    for (int i = 0; i < ay.Count; i++)
+            //    {
+            //        int 点数 = (int)ay[i] - 上次结尾;
+            //        PointF[] points_1 = new PointF[点数];
+            //        for (int j = 0; j < 点数; j++)
+            //        {
+            //            points_1[j] = points[上次结尾 + j];
+            //        }
+            //        上次结尾 = 上次结尾 + 点数;
+            //        try
+            //        {
+            //            g.DrawCurve(pen, points_1);
+            //        }
+            //        catch
+            //        {
+            //        }
+            //    }
+
+            //}
+            #endregion
+
 
         }
 
@@ -182,6 +224,18 @@ namespace WindowsFormsApp1
 
             return ay;//最后得到的是分几段，在哪个序号分段
 
+        }
+
+        private void 雷达慕1_SizeChanged(object sender, EventArgs e)
+        {
+            if(雷达慕1.points != null)
+            {
+                //雷达慕1.Draw(雷达慕1.points);
+            }
+        }
+
+        private void 雷达慕1_Load(object sender, EventArgs e)
+        {
         }
     }
 }
