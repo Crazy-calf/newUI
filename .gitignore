@@ -162,5 +162,5 @@ $RECYCLE.BIN/
 .vscode
 /.vs/WindowsFormsApp1/v16/Server/sqlite3/db.lock
 /.vs/WindowsFormsApp1/v16/Server/sqlite3
-/WindowsFormsApp1/bin/Debug
-/WindowsFormsApp1/obj/Debug
+/WindowsFormsApp1/bin/Debug/:
+/WindowsFormsApp1/obj/Debug/:
