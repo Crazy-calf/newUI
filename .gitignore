@@ -219,3 +219,7 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+
+
+!/WindowsFormsApp1/lib
