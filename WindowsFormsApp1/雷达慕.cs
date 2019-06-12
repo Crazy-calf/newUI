@@ -97,12 +97,16 @@ namespace WindowsFormsApp1
         #region 起止时间及时区
         public DateTime 开始时间;
         public DateTime 结束时间;
+        public DateTime 当前时刻;
         public int 时区;
         #endregion
 
         #region 画线属性
         public Color 线颜色 = Color.Red;
         public float 线宽 = 2;
+
+        public Color 点颜色 = Color.Yellow;
+        public float 点大小 = 4;
         #endregion
 
         #region 设置雷达显示范围
@@ -119,6 +123,7 @@ namespace WindowsFormsApp1
 
 
         public PointF[] points;
+        public PointF point;
 
         #endregion
         public 雷达慕()
@@ -214,20 +219,32 @@ namespace WindowsFormsApp1
                 位置计算 位置计算1 = new 位置计算(satellite.名字, satellite.line1, satellite.line2);
                 卫星位置[] 卫星位置 = 位置计算1.计算预计轨迹(x, y, z, 开始时间.AddHours(-时区), 结束时间.AddHours(-时区), 1);
 
-                points = new PointF[卫星位置.Length];
+                //points = new PointF[卫星位置.Length];
+                List<PointF> pointList = new List<PointF>();
+                point = new PointF();
 
                 float dpiX = this.Size.Width / 2;
                 float dpiY = this.Size.Height / 2;
 
                 for (int i = 0; i < 卫星位置.Length; i++)
                 {
-                    points[i].X = calculateAZ_EL_XY(true, 卫星位置[i].AZ, 卫星位置[i].El) * dpiX / x_max + dpiX;
-                    points[i].Y = -(calculateAZ_EL_XY(false, 卫星位置[i].AZ, 卫星位置[i].El) * dpiY / y_max) + dpiY;
+
+                    float tagX = calculateAZ_EL_XY(true, 卫星位置[i].AZ, 卫星位置[i].El);
+                    float tagY = calculateAZ_EL_XY(false, 卫星位置[i].AZ, 卫星位置[i].El);
+                    //float tagX = tagX * dpiX / x_max + dpiX;
+                    //float tagY = -(tagY * dpiY / y_max) + dpiY;
+                    if ((tagX*tagX + tagY*tagY) < (x_max*x_max + y_max*y_max))
+                        pointList.Add(new PointF(tagX * dpiX / x_max + dpiX, -(tagY * dpiY / y_max) + dpiY));
                 }
+
+                points = pointList.ToArray();
 
 
                 Image imgBack = this.BackgroundImage;
                 Bitmap destBitmap = new Bitmap(imgBack, Convert.ToInt32(this.Size.Width), Convert.ToInt32(this.Size.Height));//先绘制雷达图。
+
+                
+
 
                 Graphics g = Graphics.FromImage(destBitmap);
 
@@ -263,6 +280,45 @@ namespace WindowsFormsApp1
 
                 }
 
+                if (当前时刻 != null)
+                {
+                    卫星位置 卫星当前位置 = 位置计算1.计算实时位置(x, y, z, 当前时刻.AddHours(-时区));
+                    point.X = calculateAZ_EL_XY(true, 卫星当前位置.AZ, 卫星当前位置.El) * dpiX / x_max + dpiX;
+                    point.Y = -(calculateAZ_EL_XY(false, 卫星当前位置.AZ, 卫星当前位置.El) * dpiY / y_max) + dpiY;
+
+                    destBitmap = new Bitmap(destBitmap, Convert.ToInt32(this.Size.Width), Convert.ToInt32(this.Size.Height));//先绘制雷达图。
+                    g = Graphics.FromImage(destBitmap);
+
+                    Pen dotPen = new Pen(this.点颜色, this.点大小);
+                    Image icon = Image.FromFile(@".\dot.jpg");
+                    //卫星图标坐标(左上角)
+                    float iconx = point.X - icon.Size.Width/2;
+                    float icony = point.Y - icon.Size.Height / 2;
+
+                   
+                    g.DrawImage(icon, iconx, icony);
+
+
+                    Font font = new Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                    float strX = point.X + icon.Size.Width / 2;
+                    float strY = point.Y;
+                    StringFormat 格式 = new StringFormat();
+                    格式.Alignment = StringAlignment.Near; //右对齐
+                    格式.LineAlignment = StringAlignment.Center;
+
+                    float len = g.MeasureString(satellite.名字, font).Width;
+                    //做判断，字符串是否超出右边界，若超出，默认显示在左边
+                    if (strX + len > pictureBox1.Size.Width)
+                    {
+                        strX = iconx;
+                        格式.Alignment = StringAlignment.Far;//左对齐
+
+                    }
+
+                    
+                    g.DrawString(satellite.名字, font, Brushes.Yellow,new PointF(strX, strY), 格式);
+                }
+
                 //将画好的destBitmap设置为picBox的背景（解决改变form界面大小时，重绘背景会覆盖CreateGraphics()画线的bug）
                 pictureBox1.BackgroundImage = destBitmap;
                 pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
@@ -274,6 +330,15 @@ namespace WindowsFormsApp1
             }
 
             return res;
+        }
+
+
+        private Bitmap dd()
+        {
+            Bitmap bitmap = new Bitmap(this.BackgroundImage);
+
+
+            return bitmap;
         }
     }
 }

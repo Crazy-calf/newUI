@@ -124,7 +124,7 @@ namespace WindowsFormsApp1
             雷达慕1.y_max = 90;
             雷达慕1.线颜色 = Color.Red;
             雷达慕1.线宽 = 2;
-
+            雷达慕1.当前时刻 = Convert.ToDateTime("2019/5/19 17:28:33");
 
             雷达慕1.Draw();
 
