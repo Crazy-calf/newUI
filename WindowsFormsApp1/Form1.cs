@@ -66,10 +66,6 @@ namespace WindowsFormsApp1
         private void Form1_SizeChanged(object sender, EventArgs e)
         {
             asc.controlAutoSize(this);
-            if (雷达慕1.points != null)
-            {
-                //雷达慕1.Draw(雷达慕1.points);
-            }
         }
 
         private void Button1_Click(object sender, EventArgs e)

@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.28803.452
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApp1", "WindowsFormsApp1\WindowsFormsApp1.csproj", "{F4F807C8-1E98-45ED-BE63-7AEF887A0302}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gmap", "Gmap\Gmap.csproj", "{8EE3ACBC-1CB3-4358-9907-2492AA04E74E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{02E71BAD-78E5-4B08-8776-AE1FD927B469}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{F4F807C8-1E98-45ED-BE63-7AEF887A0302}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4F807C8-1E98-45ED-BE63-7AEF887A0302}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4F807C8-1E98-45ED-BE63-7AEF887A0302}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EE3ACBC-1CB3-4358-9907-2492AA04E74E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EE3ACBC-1CB3-4358-9907-2492AA04E74E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EE3ACBC-1CB3-4358-9907-2492AA04E74E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EE3ACBC-1CB3-4358-9907-2492AA04E74E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02E71BAD-78E5-4B08-8776-AE1FD927B469}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02E71BAD-78E5-4B08-8776-AE1FD927B469}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02E71BAD-78E5-4B08-8776-AE1FD927B469}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02E71BAD-78E5-4B08-8776-AE1FD927B469}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
