@@ -66,6 +66,7 @@ namespace WindowsFormsApp1
         private void Form1_SizeChanged(object sender, EventArgs e)
         {
             asc.controlAutoSize(this);
+            雷达慕1.Draw();
         }
 
         private void Button1_Click(object sender, EventArgs e)
