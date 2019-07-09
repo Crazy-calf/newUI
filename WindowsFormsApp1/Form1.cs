@@ -96,9 +96,9 @@ namespace WindowsFormsApp1
         private void Button14_Click(object sender, EventArgs e)
         {
 
-            string name = "HAIYANG 2A";
-            string line1 = "1 37781U 11043A   19084.96741172 -.00000044  00000-0  11863-6 0  9998";
-            string line2 = "2 37781  99.3212  95.3692 0001741  85.5656 274.5707 13.78718376383104";
+            string name = "FENGYUN 3B";
+            string line1 = "1 37214U 10059A   19087.82075425 -.00000007  00000-0  19543-4 0  9994";
+            string line2 = "2 37214  98.9908  59.0853 0018162  92.5170 267.8085 14.15910151434470";
             double width = 0.0;
 
             Satellite satellite = new Satellite(name, line1, line2, width);
@@ -107,12 +107,12 @@ namespace WindowsFormsApp1
 
             雷达慕1.satellite = satellite;
 
-            雷达慕1.x = 116.363;
-            雷达慕1.y = 40.059;
-            雷达慕1.z = 0.4;
+            雷达慕1.x = 104;
+            雷达慕1.y = 30;
+            雷达慕1.z = 0;
 
-            雷达慕1.开始时间 = Convert.ToDateTime("2019/5/19 17:28:33");
-            雷达慕1.结束时间 = Convert.ToDateTime("2019/5/19 17:42:06");
+            雷达慕1.开始时间 = Convert.ToDateTime("2019/7/9 6:55:41");
+            雷达慕1.结束时间 = Convert.ToDateTime("2019/7/9 7:06:09");
 
             雷达慕1.时区 = 8;
 
@@ -121,7 +121,7 @@ namespace WindowsFormsApp1
             雷达慕1.y_max = 90;
             雷达慕1.线颜色 = Color.Red;
             雷达慕1.线宽 = 2;
-            雷达慕1.当前时刻 = Convert.ToDateTime("2019/5/19 17:28:33");
+            雷达慕1.当前时刻 = Convert.ToDateTime("2019/7/9 7:06:09");
 
             雷达慕1.Draw();
 

@@ -163,6 +163,27 @@ namespace WindowsFormsApp1
             return (float)x;
         }
 
+        private PointF calculate(double AZ, double EL)
+        {
+
+
+            double len = (90 - EL)/90;
+
+            Double X;
+            Double Y;
+
+            #region 俯仰坐标转换雷达坐标系
+            X = len * Math.Cos(Math.PI / 2 - AZ * Math.PI / 180) * this.Size.Width / 2;
+            Y = len * Math.Sin(Math.PI / 2 - AZ * Math.PI / 180) * this.Size.Height / 2;
+            #endregion
+
+            #region 雷达坐标系转换控件坐标
+            X += this.Size.Width / 2;
+            Y = -Y + this.Size.Height / 2;
+            #endregion
+
+            return new PointF((float)X, (float)Y);
+        }
         /// <summary>
         /// 画线分段，暂不知道什么用，摘自双流11m
         /// </summary>
@@ -217,26 +238,33 @@ namespace WindowsFormsApp1
                 }
 
                 位置计算 位置计算1 = new 位置计算(satellite.名字, satellite.line1, satellite.line2);
-                卫星位置[] 卫星位置 = 位置计算1.计算预计轨迹(x, y, z, 开始时间.AddHours(-时区), 结束时间.AddHours(-时区), 1);
+                卫星位置[] 卫星位置 = 位置计算1.计算预计轨迹(x, y, z, 开始时间, 结束时间, 1);
 
                 //points = new PointF[卫星位置.Length];
                 List<PointF> pointList = new List<PointF>();
                 point = new PointF();
 
+                List<PointF> pTests = new List<PointF>();
+                
+
                 float dpiX = this.Size.Width / 2;
                 float dpiY = this.Size.Height / 2;
 
+
+
                 for (int i = 0; i < 卫星位置.Length; i++)
                 {
-
-                    float tagX = calculateAZ_EL_XY(true, 卫星位置[i].AZ, 卫星位置[i].El);
-                    float tagY = calculateAZ_EL_XY(false, 卫星位置[i].AZ, 卫星位置[i].El);
-                    //float tagX = tagX * dpiX / x_max + dpiX;
-                    //float tagY = -(tagY * dpiY / y_max) + dpiY;
-                    if ((tagX*tagX + tagY*tagY) < (x_max*x_max + y_max*y_max))
-                        pointList.Add(new PointF(tagX * dpiX / x_max + dpiX, -(tagY * dpiY / y_max) + dpiY));
+                    #region old
+                    //float tagX = calculateAZ_EL_XY(true, 卫星位置[i].AZ, 卫星位置[i].El);
+                    //float tagY = calculateAZ_EL_XY(false, 卫星位置[i].AZ, 卫星位置[i].El);
+                    //pTests.Add(new PointF(tagX, tagY));
+                    //if ((tagX * tagX + tagY * tagY) < (x_max * x_max + y_max * y_max))
+                    //    pointList.Add(new PointF(tagX * dpiX / x_max + dpiX, -(tagY * dpiY / y_max) + dpiY));
+                    #endregion
+                    pointList.Add(calculate(卫星位置[i].AZ, 卫星位置[i].El));
                 }
 
+                //points = pTests.ToArray();
                 points = pointList.ToArray();
 
 
@@ -282,10 +310,10 @@ namespace WindowsFormsApp1
 
                 if (当前时刻 != null)
                 {
-                    卫星位置 卫星当前位置 = 位置计算1.计算实时位置(x, y, z, 当前时刻.AddHours(-时区));
-                    point.X = calculateAZ_EL_XY(true, 卫星当前位置.AZ, 卫星当前位置.El) * dpiX / x_max + dpiX;
-                    point.Y = -(calculateAZ_EL_XY(false, 卫星当前位置.AZ, 卫星当前位置.El) * dpiY / y_max) + dpiY;
-
+                    卫星位置 卫星当前位置 = 位置计算1.计算实时位置(x, y, z, 当前时刻);
+                    //point.X = calculateAZ_EL_XY(true, 卫星当前位置.AZ, 卫星当前位置.El) * dpiX / x_max + dpiX;
+                    //point.Y = -(calculateAZ_EL_XY(false, 卫星当前位置.AZ, 卫星当前位置.El) * dpiY / y_max) + dpiY;
+                    point = calculate(卫星当前位置.AZ, 卫星当前位置.El);
                     destBitmap = new Bitmap(destBitmap, Convert.ToInt32(this.Size.Width), Convert.ToInt32(this.Size.Height));//先绘制雷达图。
                     g = Graphics.FromImage(destBitmap);
 
@@ -322,6 +350,8 @@ namespace WindowsFormsApp1
                 //将画好的destBitmap设置为picBox的背景（解决改变form界面大小时，重绘背景会覆盖CreateGraphics()画线的bug）
                 pictureBox1.BackgroundImage = destBitmap;
                 pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
+
+                res["error"] = pTests;
             }
             catch (Exception ex)
             {
@@ -342,3 +372,6 @@ namespace WindowsFormsApp1
         }
     }
 }
+
+
+
