@@ -93,7 +93,6 @@
             this.雷达慕1.Name = "雷达慕1";
             this.雷达慕1.Size = new System.Drawing.Size(407, 404);
             this.雷达慕1.TabIndex = 19;
-            this.雷达慕1.Load += new System.EventHandler(this.雷达慕1_Load);
             this.雷达慕1.SizeChanged += new System.EventHandler(this.雷达慕1_SizeChanged);
             // 
             // panel1

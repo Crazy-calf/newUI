@@ -107,6 +107,8 @@ namespace WindowsFormsApp1
 
         public Color 点颜色 = Color.Yellow;
         public float 点大小 = 4;
+
+        Pen pen;
         #endregion
 
         #region 设置雷达显示范围
@@ -122,7 +124,7 @@ namespace WindowsFormsApp1
         #endregion
 
 
-        public PointF[] points;
+        private PointF[] points;
         public PointF point;
 
         #endregion
@@ -194,14 +196,24 @@ namespace WindowsFormsApp1
             ArrayList ay = new ArrayList();
             if (pps.Length == 0)
                 return ay;
-            float temp = pps[0].X;
-            for (int i = 1; i < pps.Length; i++)
+            //float temp = pps[0].X;
+            //for (int i = 1; i < pps.Length; i++)
+            //{
+            //    if (Math.Abs(pps[i].X - temp) > 100)//跳变需要分段
+            //    {
+            //        ay.Add(i);
+            //    }
+            //    temp = pps[i].X;
+            //}
+
+            float temp = pps[0].Y;
+            for (int i = 0; i < pps.Length; i++)
             {
-                if (Math.Abs(pps[i].X - temp) > 100)//跳变需要分段
+                if (Math.Abs(pps[i].Y - temp) > 100)//跳变需要分段
                 {
                     ay.Add(i);
                 }
-                temp = pps[i].X;
+                temp = pps[i].Y;
             }
 
             return ay;//最后得到的是分几段，在哪个序号分段
@@ -221,6 +233,7 @@ namespace WindowsFormsApp1
         }
 
 
+
         public Dictionary<string,object> Draw()
         {
             #region 错误信息
@@ -232,143 +245,125 @@ namespace WindowsFormsApp1
             #endregion
             try
             {
-                if (satellite == null)
-                {
-                    satellite = new Satellite(name, line1, line2, width);
-                }
-
+                #region 卫星轨迹计算
                 位置计算 位置计算1 = new 位置计算(satellite.名字, satellite.line1, satellite.line2);
                 卫星位置[] 卫星位置 = 位置计算1.计算预计轨迹(x, y, z, 开始时间, 结束时间, 1);
+                卫星位置 卫星当前位置 = 位置计算1.计算实时位置(x, y, z, 当前时刻);
+                #endregion
 
-                //points = new PointF[卫星位置.Length];
-                List<PointF> pointList = new List<PointF>();
+                //将卫星轨迹点系列转化为 线条的集合。
+                //主要依据：俯仰>=0
+                List<List<PointF>> pointFs = Conversion(卫星位置);
+
                 point = new PointF();
 
-                List<PointF> pTests = new List<PointF>();
-                
-
-                float dpiX = this.Size.Width / 2;
-                float dpiY = this.Size.Height / 2;
-
-
-
-                for (int i = 0; i < 卫星位置.Length; i++)
-                {
-                    #region old
-                    //float tagX = calculateAZ_EL_XY(true, 卫星位置[i].AZ, 卫星位置[i].El);
-                    //float tagY = calculateAZ_EL_XY(false, 卫星位置[i].AZ, 卫星位置[i].El);
-                    //pTests.Add(new PointF(tagX, tagY));
-                    //if ((tagX * tagX + tagY * tagY) < (x_max * x_max + y_max * y_max))
-                    //    pointList.Add(new PointF(tagX * dpiX / x_max + dpiX, -(tagY * dpiY / y_max) + dpiY));
-                    #endregion
-                    pointList.Add(calculate(卫星位置[i].AZ, 卫星位置[i].El));
-                }
-
-                //points = pTests.ToArray();
-                points = pointList.ToArray();
-
-
+                #region 创建画布
                 Image imgBack = this.BackgroundImage;
                 Bitmap destBitmap = new Bitmap(imgBack, Convert.ToInt32(this.Size.Width), Convert.ToInt32(this.Size.Height));//先绘制雷达图。
-
-                
-
-
                 Graphics g = Graphics.FromImage(destBitmap);
+                #endregion
 
-                Pen pen = new Pen(this.线颜色, this.线宽);
+                //画笔
+                pen = new Pen(线颜色, 线宽);
 
-                ArrayList ay = 分段(points);
+                //雷达画线
+                destBitmap = DrawLine(destBitmap, g, pointFs);
 
-                //再destBitmap上画图
-                if (ay.Count == 0)//不需要分段
-                {
-                    g.DrawCurve(pen, points);
-                }
-                else
-                {
-                    int 上次结尾 = 0;
-                    for (int i = 0; i < ay.Count; i++)
-                    {
-                        int 点数 = (int)ay[i] - 上次结尾;
-                        PointF[] points_1 = new PointF[点数];
-                        for (int j = 0; j < 点数; j++)
-                        {
-                            points_1[j] = points[上次结尾 + j];
-                        }
-                        上次结尾 = 上次结尾 + 点数;
-                        try
-                        {
-                            g.DrawCurve(pen, points_1);
-                        }
-                        catch
-                        {
-                        }
-                    }
-
-                }
-
-                if (当前时刻 != null)
-                {
-                    卫星位置 卫星当前位置 = 位置计算1.计算实时位置(x, y, z, 当前时刻);
-                    //point.X = calculateAZ_EL_XY(true, 卫星当前位置.AZ, 卫星当前位置.El) * dpiX / x_max + dpiX;
-                    //point.Y = -(calculateAZ_EL_XY(false, 卫星当前位置.AZ, 卫星当前位置.El) * dpiY / y_max) + dpiY;
-                    point = calculate(卫星当前位置.AZ, 卫星当前位置.El);
-                    destBitmap = new Bitmap(destBitmap, Convert.ToInt32(this.Size.Width), Convert.ToInt32(this.Size.Height));//先绘制雷达图。
-                    g = Graphics.FromImage(destBitmap);
-
-                    Pen dotPen = new Pen(this.点颜色, this.点大小);
-                    Image icon = Image.FromFile(@".\dot.jpg");
-                    //卫星图标坐标(左上角)
-                    float iconx = point.X - icon.Size.Width/2;
-                    float icony = point.Y - icon.Size.Height / 2;
-
-                   
-                    g.DrawImage(icon, iconx, icony);
-
-
-                    Font font = new Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-                    float strX = point.X + icon.Size.Width / 2;
-                    float strY = point.Y;
-                    StringFormat 格式 = new StringFormat();
-                    格式.Alignment = StringAlignment.Near; //右对齐
-                    格式.LineAlignment = StringAlignment.Center;
-
-                    float len = g.MeasureString(satellite.名字, font).Width;
-                    //做判断，字符串是否超出右边界，若超出，默认显示在左边
-                    if (strX + len > pictureBox1.Size.Width)
-                    {
-                        strX = iconx;
-                        格式.Alignment = StringAlignment.Far;//左对齐
-
-                    }
-
-                    
-                    g.DrawString(satellite.名字, font, Brushes.Yellow,new PointF(strX, strY), 格式);
-                }
+                //卫星画点
+                destBitmap = DrawPoint(destBitmap, g, 卫星当前位置);
 
                 //将画好的destBitmap设置为picBox的背景（解决改变form界面大小时，重绘背景会覆盖CreateGraphics()画线的bug）
                 pictureBox1.BackgroundImage = destBitmap;
                 pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
 
-                res["error"] = pTests;
             }
             catch (Exception ex)
             {
                 res["isError"] = true;
                 res["error"] = ex.Message;
             }
-
             return res;
         }
 
 
-        private Bitmap dd()
+        private List<List<PointF>> Conversion(卫星位置[] 卫星位置)
         {
-            Bitmap bitmap = new Bitmap(this.BackgroundImage);
+            List<List<PointF>> pointFs = new List<List<PointF>>();
+            int lineIndex = 0;
+
+            bool breakMark = true;
+            for (int i = 0; i < 卫星位置.Length; i++)
+            {
+                if (卫星位置[i].El >= 0)
+                {
+                    if (breakMark)
+                    {
+                        pointFs.Add(new List<PointF>());
+                    }
+                    pointFs[lineIndex].Add(calculate(卫星位置[i].AZ, 卫星位置[i].El));
+                    breakMark = false;
+                }
+                else
+                {
+                    if (!breakMark)
+                    {
+                        lineIndex++;
+                        breakMark = true;
+                    }
+                }
+            }
+            return pointFs;
+        }
+
+        private Bitmap DrawLine(Bitmap destBitmap, Graphics g, List<List<PointF>> pointsList)
+        {
+            //再destBitmap上画图
+            foreach (var item in pointsList)
+            {
+                g.DrawCurve(pen, item.ToArray());
+            }
+            return destBitmap;
+        }
 
 
-            return bitmap;
+        private Bitmap DrawPoint(Bitmap destBitmap, Graphics g, 卫星位置 卫星当前位置)
+        {
+            if (当前时刻 != null)
+            {
+                point = calculate(卫星当前位置.AZ, 卫星当前位置.El);
+                destBitmap = new Bitmap(destBitmap, Convert.ToInt32(this.Size.Width), Convert.ToInt32(this.Size.Height));//先绘制雷达图。
+                g = Graphics.FromImage(destBitmap);
+
+                Pen dotPen = new Pen(this.点颜色, this.点大小);
+                Image icon = Image.FromFile(@".\dot.jpg");
+                //卫星图标坐标(左上角)
+                float iconx = point.X - icon.Size.Width / 2;
+                float icony = point.Y - icon.Size.Height / 2;
+
+                g.DrawImage(icon, iconx, icony);
+
+                Font font = new Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+                float strX = point.X + icon.Size.Width / 2;
+                float strY = point.Y;
+                StringFormat 格式 = new StringFormat();
+                格式.Alignment = StringAlignment.Near; //右对齐
+                格式.LineAlignment = StringAlignment.Center;
+
+                float len = g.MeasureString(satellite.名字, font).Width;
+
+                //做判断，字符串是否超出右边界，若超出，默认显示在左边
+                if (strX + len > pictureBox1.Size.Width)
+                {
+                    strX = iconx;
+                    格式.Alignment = StringAlignment.Far;//左对齐
+
+                }
+
+
+                g.DrawString(satellite.名字, font, Brushes.Yellow, new PointF(strX, strY), 格式);
+            }
+
+            return destBitmap;
         }
     }
 }

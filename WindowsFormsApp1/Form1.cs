@@ -66,7 +66,6 @@ namespace WindowsFormsApp1
         private void Form1_SizeChanged(object sender, EventArgs e)
         {
             asc.controlAutoSize(this);
-            雷达慕1.Draw();
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -112,7 +111,7 @@ namespace WindowsFormsApp1
             雷达慕1.z = 0;
 
             雷达慕1.开始时间 = Convert.ToDateTime("2019/7/9 6:55:41");
-            雷达慕1.结束时间 = Convert.ToDateTime("2019/7/9 7:06:09");
+            雷达慕1.结束时间 = Convert.ToDateTime("2019/7/9 9:06:09");
 
             雷达慕1.时区 = 8;
 
@@ -225,14 +224,8 @@ namespace WindowsFormsApp1
 
         private void 雷达慕1_SizeChanged(object sender, EventArgs e)
         {
-            if(雷达慕1.points != null)
-            {
-                //雷达慕1.Draw(雷达慕1.points);
-            }
+            雷达慕1.Draw();
         }
 
-        private void 雷达慕1_Load(object sender, EventArgs e)
-        {
-        }
     }
 }

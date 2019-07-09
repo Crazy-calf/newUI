@@ -8,7 +8,6 @@ D:\project\winform\newUI\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\Microsoft.Q
 D:\project\winform\newUI\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\OrbitTools.dll
 D:\project\winform\newUI\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\轨道计算.dll
 D:\project\winform\newUI\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\zh-Hans\Microsoft.QualityTools.Testing.Fakes.resources.dll
-D:\project\winform\newUI\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csprojFakesResolveAssemblyReference.cache
 D:\project\winform\newUI\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Form1.resources
 D:\project\winform\newUI\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
 D:\project\winform\newUI\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.X光发射1.resources
