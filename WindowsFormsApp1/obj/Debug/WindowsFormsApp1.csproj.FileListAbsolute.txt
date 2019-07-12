@@ -19,3 +19,4 @@ D:\project\winform\newUI\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsForm
 D:\project\winform\newUI\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CopyComplete
 D:\project\winform\newUI\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
 D:\project\winform\newUI\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
+D:\project\winform\newUI\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csprojFakesResolveAssemblyReference.cache

@@ -234,7 +234,7 @@ namespace WindowsFormsApp1
 
 
 
-        public Dictionary<string,object> Draw()
+        public Dictionary<string,object> Draw(bool isClear = false)
         {
             #region 错误信息
             Exception a = new Exception();
@@ -245,36 +245,46 @@ namespace WindowsFormsApp1
             #endregion
             try
             {
-                #region 卫星轨迹计算
-                位置计算 位置计算1 = new 位置计算(satellite.名字, satellite.line1, satellite.line2);
-                卫星位置[] 卫星位置 = 位置计算1.计算预计轨迹(x, y, z, 开始时间, 结束时间, 1);
-                卫星位置 卫星当前位置 = 位置计算1.计算实时位置(x, y, z, 当前时刻);
-                #endregion
+                if (!isClear)
+                {
+                    #region 卫星轨迹计算
+                    位置计算 位置计算1 = new 位置计算(satellite.名字, satellite.line1, satellite.line2);
+                    卫星位置[] 卫星位置 = 位置计算1.计算预计轨迹(x, y, z, 开始时间, 结束时间, 1);
+                    卫星位置 卫星当前位置 = 位置计算1.计算实时位置(x, y, z, 当前时刻);
+                    #endregion
 
-                //将卫星轨迹点系列转化为 线条的集合。
-                //主要依据：俯仰>=0
-                List<List<PointF>> pointFs = Conversion(卫星位置);
+                    //将卫星轨迹点系列转化为 线条的集合。
+                    //主要依据：俯仰>=0
+                    List<List<PointF>> pointFs = Conversion(卫星位置);
 
-                point = new PointF();
+                    point = new PointF();
 
-                #region 创建画布
-                Image imgBack = this.BackgroundImage;
-                Bitmap destBitmap = new Bitmap(imgBack, Convert.ToInt32(this.Size.Width), Convert.ToInt32(this.Size.Height));//先绘制雷达图。
-                Graphics g = Graphics.FromImage(destBitmap);
-                #endregion
+                    #region 创建画布
+                    Image imgBack = this.BackgroundImage;
+                    Bitmap destBitmap = new Bitmap(imgBack, Convert.ToInt32(this.Size.Width), Convert.ToInt32(this.Size.Height));//先绘制雷达图。
+                    Graphics g = Graphics.FromImage(destBitmap);
+                    #endregion
 
-                //画笔
-                pen = new Pen(线颜色, 线宽);
+                    //画笔
+                    pen = new Pen(线颜色, 线宽);
 
-                //雷达画线
-                destBitmap = DrawLine(destBitmap, g, pointFs);
+                    //雷达画线
+                    destBitmap = DrawLine(destBitmap, g, pointFs);
 
-                //卫星画点
-                destBitmap = DrawPoint(destBitmap, g, 卫星当前位置);
+                    //卫星画点
+                    destBitmap = DrawPoint(destBitmap, g, 卫星当前位置);
 
-                //将画好的destBitmap设置为picBox的背景（解决改变form界面大小时，重绘背景会覆盖CreateGraphics()画线的bug）
-                pictureBox1.BackgroundImage = destBitmap;
-                pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
+                    //将画好的destBitmap设置为picBox的背景（解决改变form界面大小时，重绘背景会覆盖CreateGraphics()画线的bug）
+                    pictureBox1.BackgroundImage = destBitmap;
+                    pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
+                }
+                else
+                {
+                    Image imgBack = this.BackgroundImage;
+                    Bitmap destBitmap = new Bitmap(imgBack, Convert.ToInt32(this.Size.Width), Convert.ToInt32(this.Size.Height));//先绘制雷达图。
+                    pictureBox1.BackgroundImage = destBitmap;
+                    pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
+                }
 
             }
             catch (Exception ex)
@@ -284,7 +294,6 @@ namespace WindowsFormsApp1
             }
             return res;
         }
-
 
         private List<List<PointF>> Conversion(卫星位置[] 卫星位置)
         {
@@ -331,10 +340,8 @@ namespace WindowsFormsApp1
             if (当前时刻 != null)
             {
                 point = calculate(卫星当前位置.AZ, 卫星当前位置.El);
-                destBitmap = new Bitmap(destBitmap, Convert.ToInt32(this.Size.Width), Convert.ToInt32(this.Size.Height));//先绘制雷达图。
                 g = Graphics.FromImage(destBitmap);
 
-                Pen dotPen = new Pen(this.点颜色, this.点大小);
                 Image icon = Image.FromFile(@".\dot.jpg");
                 //卫星图标坐标(左上角)
                 float iconx = point.X - icon.Size.Width / 2;
@@ -356,9 +363,7 @@ namespace WindowsFormsApp1
                 {
                     strX = iconx;
                     格式.Alignment = StringAlignment.Far;//左对齐
-
                 }
-
 
                 g.DrawString(satellite.名字, font, Brushes.Yellow, new PointF(strX, strY), 格式);
             }

@@ -21,6 +21,7 @@ namespace WindowsFormsApp1
         public bool isOpenWindow_X光发射1 = false;
         #endregion
 
+        public bool isDraw = false;
 
         #region 临时数据
         //static string name = "HAIYANG 2A";
@@ -122,7 +123,8 @@ namespace WindowsFormsApp1
             雷达慕1.线宽 = 2;
             雷达慕1.当前时刻 = Convert.ToDateTime("2019/7/9 7:06:09");
 
-            雷达慕1.Draw();
+            isDraw = !isDraw;
+            雷达慕1.Draw(isDraw);
 
             
 
@@ -224,7 +226,7 @@ namespace WindowsFormsApp1
 
         private void 雷达慕1_SizeChanged(object sender, EventArgs e)
         {
-            雷达慕1.Draw();
+            雷达慕1.Draw(isDraw);
         }
 
     }
