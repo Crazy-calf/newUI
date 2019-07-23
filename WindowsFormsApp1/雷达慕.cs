@@ -124,7 +124,7 @@ namespace WindowsFormsApp1
         #endregion
 
 
-        private PointF[] points;
+        //private PointF[] points;
         public PointF point;
 
         #endregion
@@ -139,36 +139,14 @@ namespace WindowsFormsApp1
             pictureBox1.Size = this.Size;
         }
 
-
-        
-
-
-
         /// <summary>
-        /// 雷达坐标系转换(中心为原点，y轴向上，x轴向右)
+        /// 坐标轴转换，原点在左上角x向右，y向左
         /// </summary>
-        /// <param name="v"></param>
-        /// <param name="AZ">[-180,180]</param>
-        /// <param name="EL">[-90,90]</param>
+        /// <param name="AZ"></param>
+        /// <param name="EL"></param>
         /// <returns></returns>
-        private float calculateAZ_EL_XY(bool v, double AZ, double EL)
-        {
-            double x;
-            if (v)
-            {
-                x = (Math.Sin(AZ * Math.PI / 180) * (90 - EL) + 90) / 2;
-            }
-            else
-            {
-                x = (90 - (Math.Cos(AZ * Math.PI / 180) * (90 - EL) + 90)) / 2;
-            }
-            return (float)x;
-        }
-
         private PointF calculate(double AZ, double EL)
         {
-
-
             double len = (90 - EL)/90;
 
             Double X;
@@ -186,6 +164,7 @@ namespace WindowsFormsApp1
 
             return new PointF((float)X, (float)Y);
         }
+
         /// <summary>
         /// 画线分段，暂不知道什么用，摘自双流11m
         /// </summary>
@@ -196,15 +175,6 @@ namespace WindowsFormsApp1
             ArrayList ay = new ArrayList();
             if (pps.Length == 0)
                 return ay;
-            //float temp = pps[0].X;
-            //for (int i = 1; i < pps.Length; i++)
-            //{
-            //    if (Math.Abs(pps[i].X - temp) > 100)//跳变需要分段
-            //    {
-            //        ay.Add(i);
-            //    }
-            //    temp = pps[i].X;
-            //}
 
             float temp = pps[0].Y;
             for (int i = 0; i < pps.Length; i++)
@@ -369,6 +339,11 @@ namespace WindowsFormsApp1
             }
 
             return destBitmap;
+        }
+
+        private void 雷达慕_SizeChanged(object sender, EventArgs e)
+        {
+            Draw();
         }
     }
 }

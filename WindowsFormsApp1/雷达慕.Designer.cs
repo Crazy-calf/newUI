@@ -55,6 +55,7 @@
             this.Name = "雷达慕";
             this.Size = new System.Drawing.Size(300, 265);
             this.Load += new System.EventHandler(this.雷达慕_Load);
+            this.SizeChanged += new System.EventHandler(this.雷达慕_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 

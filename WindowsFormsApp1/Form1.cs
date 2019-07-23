@@ -19,6 +19,8 @@ namespace WindowsFormsApp1
 
         public bool isOpenWindow_天线 = false;
         public bool isOpenWindow_X光发射1 = false;
+
+        //RadarScreen.Satellite satellite;
         #endregion
 
         public bool isDraw = false;
@@ -96,88 +98,23 @@ namespace WindowsFormsApp1
         private void Button14_Click(object sender, EventArgs e)
         {
 
-            string name = "FENGYUN 3B";
-            string line1 = "1 37214U 10059A   19087.82075425 -.00000007  00000-0  19543-4 0  9994";
-            string line2 = "2 37214  98.9908  59.0853 0018162  92.5170 267.8085 14.15910151434470";
+            string name = this.name.Text;
+            string line1 = this.line1.Text;
+            string line2 = this.line2.Text;
             double width = 0.0;
 
-            Satellite satellite = new Satellite(name, line1, line2, width);
+            RadarScreen.Satellite satellite = new RadarScreen.Satellite(name, line1, line2, width);
 
-            //可以直接给satellite赋值
-
-            雷达慕1.satellite = satellite;
-
-            雷达慕1.x = 104;
-            雷达慕1.y = 30;
-            雷达慕1.z = 0;
-
-            雷达慕1.开始时间 = Convert.ToDateTime("2019/7/9 6:55:41");
-            雷达慕1.结束时间 = Convert.ToDateTime("2019/7/9 9:06:09");
-
-            雷达慕1.时区 = 8;
-
-            //雷达半轴坐标上限为90
-            雷达慕1.x_max = 90;
-            雷达慕1.y_max = 90;
-            雷达慕1.线颜色 = Color.Red;
-            雷达慕1.线宽 = 2;
-            雷达慕1.当前时刻 = Convert.ToDateTime("2019/7/9 7:06:09");
-
-            isDraw = !isDraw;
-            雷达慕1.Draw(isDraw);
-
+            雷达幕1.开始时间 = Convert.ToDateTime(textBox1.Text);
+            雷达幕1.结束时间 = Convert.ToDateTime(textBox2.Text);
             
+            //雷达半轴坐标上限为90
+            雷达幕1.当前时刻 = Convert.ToDateTime(textBox3.Text);
 
-            #region 外部测试
-            //Bitmap destBitmap = new Bitmap(Convert.ToInt32(pictureBox1.Size.Width), Convert.ToInt32(pictureBox1.Size.Height));
-
-            //Graphics g = Graphics.FromImage(destBitmap);
-
-            //float dpiX = pictureBox1.Size.Width / 2;
-            //float dpiY = pictureBox1.Size.Height / 2;
-
-            //位置计算 位置计算1 = new 位置计算(satellite.名字, satellite.line1, satellite.line2);
-            //卫星位置[] 卫星位置 = 位置计算1.计算预计轨迹(x, y, z, 开始时间.AddHours(-时区), 结束时间.AddHours(-时区), 1);
-
-            //PointF[] points = new PointF[卫星位置.Length];
+            雷达幕1.satellite = satellite;
 
 
-            //for (int i = 0; i < 卫星位置.Length; i++)
-            //{
-            //    points[i].X = calculateAZ_EL_XY(true, 卫星位置[i].AZ, 卫星位置[i].El) * dpiX / x_max + dpiX;
-            //    points[i].Y = -(calculateAZ_EL_XY(false, 卫星位置[i].AZ, 卫星位置[i].El) * dpiY / y_max) + dpiY;
-            //}
-
-            //Pen pen = new Pen(雷达慕1.线颜色, 雷达慕1.线宽);
-
-            //ArrayList ay = 分段(points);
-            //if (ay.Count == 0)//不需要分段
-            //{
-            //    g.DrawCurve(pen, points);
-            //}
-            //else
-            //{
-            //    int 上次结尾 = 0;
-            //    for (int i = 0; i < ay.Count; i++)
-            //    {
-            //        int 点数 = (int)ay[i] - 上次结尾;
-            //        PointF[] points_1 = new PointF[点数];
-            //        for (int j = 0; j < 点数; j++)
-            //        {
-            //            points_1[j] = points[上次结尾 + j];
-            //        }
-            //        上次结尾 = 上次结尾 + 点数;
-            //        try
-            //        {
-            //            g.DrawCurve(pen, points_1);
-            //        }
-            //        catch
-            //        {
-            //        }
-            //    }
-
-            //}
-            #endregion
+            雷达幕1.Start();
 
 
         }
@@ -226,8 +163,23 @@ namespace WindowsFormsApp1
 
         private void 雷达慕1_SizeChanged(object sender, EventArgs e)
         {
-            雷达慕1.Draw(isDraw);
+            雷达幕1.Draw();
         }
 
+        private void Button15_Click(object sender, EventArgs e)
+        {
+            雷达幕1.close();
+        }
+
+        private void 雷达幕1_ImeModeChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Button16_Click(object sender, EventArgs e)
+        {
+            雷达幕1.TimeLag = 10;
+            雷达幕1.StartTimer();
+        }
     }
 }

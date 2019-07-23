@@ -1,5 +1,6 @@
 ﻿using GMap.NET;
 using GMap.NET.MapProviders;
+using GMap.NET.Projections;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
 using Model;
@@ -9,6 +10,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -64,6 +66,14 @@ namespace Gmap
 
             GMap.NET.GMaps.Instance.ImportFromGMDB(mapPath);
 
+            #region test
+            GSize gSize = new GSize(300, 200);
+            //gMap.MapProvider.Projection.TileSize
+            //gMap.SetSize(gSize);
+
+            #endregion
+
+
             //地图中心位置
             //gMap.SetPositionByKeywords("beijing, china"); 
             //gMap.Position = new PointLatLng(39.185422, 112.252810);  //中心点的纬度，经度     
@@ -75,9 +85,9 @@ namespace Gmap
             gMap.MinZoom = 1;   //最小缩放
             gMap.MaxZoom = 18;  //最大缩放
             gMap.Zoom = 1;      //当前缩放
-
-
-
+            gMap.Offset(0, 0);
+            gMap.Size = new Size(800, 400);
+            //gMap.MapProvider.Projection.TileSize = new GSize(300, 200);
         }
 
         private void Button1_Click(object sender, EventArgs e)
