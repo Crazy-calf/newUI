@@ -114,8 +114,12 @@ namespace RadarScreen
         {
             this.satellite = null;
             Draw();
-            this.IsStart = false;
-            this.线程1.Abort();
+            if (this.IsStartTimer)
+            {
+                this.IsStartTimer = false;
+                this.IsStart = false;
+                this.线程1.Abort();
+            }
         }
         #endregion
         //private PointF[] points;

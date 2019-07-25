@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            RadarScreen.Satellite satellite3 = new RadarScreen.Satellite();
             this.button14 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
@@ -765,10 +764,7 @@
             // 
             this.雷达幕1.Location = new System.Drawing.Point(12, 12);
             this.雷达幕1.Name = "雷达幕1";
-            satellite3.line1 = "";
-            satellite3.line2 = "";
-            satellite3.名字 = "未知卫星                    ";
-            this.雷达幕1.satellite = satellite3;
+
             this.雷达幕1.Size = new System.Drawing.Size(416, 435);
             this.雷达幕1.TabIndex = 20;
             this.雷达幕1.x_max = 90F;
